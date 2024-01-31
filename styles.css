@@ -4,19 +4,14 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.chat {
-    margin: 32px 14px;
+#contact-info {
+    background-color: tomato;
 }
 
-.chat .title {
-    background-color: red;
+#view-messages {
+    background-color: lightgreen;
 }
 
-.chat .content {
-    background-color: green;
-    border-radius: 50;
-}
-
-.chat .textarea {
-    background-color: blue;
+#send-message {
+    background-color: lightblue;
 }

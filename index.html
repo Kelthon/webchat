@@ -3,34 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
     <title>Chat</title>
 </head>
 <body>
     <main>
-        <div class="chat">
-            <div class="title">
+        <section id="contact-info">
+            <header>
                 <h1>John Doe</h1>
-            </div>
-            <div class="content">
-                <ul class="history">
-                    <li class="message">
-                        <div class="received">
-                            <p>Hello.</p>
-                        </div>
-                    </li>
-                    <li class="message">
-                        <div class="sended">
-                            <p>Hi!</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="textarea">
-                <input type="text" placeholder="Write any...">
-                <button>send</button>
-            </div>
-        </div>
+                <small id="contact-current-status">online</small>
+            </header>''
+        </section>
+
+        <section id="view-messages">
+            <ul>
+                <li class="received">
+                    <p>Hello.</p>
+                    <small>8:00 AM</small>
+                </li>
+
+                <li class="sended">
+                    <p>Hi 😊.</p>
+                    <small>8:01 AM</small>
+                </li>
+
+                <li class="received">
+                    <p>John Here.</p>
+                    <p>Can you send me the your annotations?.</p>
+                    <small>8:01 AM</small>
+                </li>
+
+                <li class="sended">
+                    <p>Oh hi Hi John.</p>
+                    <p>Sure I do.</p>
+                    <small>8:03 AM</small>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="send-message">
+            <form action="" method="post">
+                <p>
+                    <input type="text" name="message" placeholder="Write a message">
+                    <button>Send message</button>
+                </p>
+            </form>
+        </section>
     </main>
 </body>
 </html>
