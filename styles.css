@@ -1,17 +1,50 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-#contact-info {
+aside section#contact-info {
     background-color: tomato;
 }
 
-#view-messages {
+section#view-messages {
     background-color: lightgreen;
 }
 
-#send-message {
+section#send-message {
     background-color: lightblue;
+}
+
+section#view-messages ul {
+    list-style: none;
+}
+
+section:is(#contact-info, #view-messages) {
+    padding: 1em;
+}
+
+section#view-messages ul li {
+    padding-bottom: 1.25em;
+}
+
+section#view-messages ul li.received {
+    text-align: left;
+}
+
+section#view-messages ul li.sended {
+    text-align: right;
+}
+
+section#view-messages ul li small.message-status {
+    color: gray;
+}
+
+section#send-message form p {
+    margin: 0 1em;
+}
+
+section#send-message form p input, section#send-message form p button {
+    padding: 1em;
 }
