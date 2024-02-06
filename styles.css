@@ -33,11 +33,17 @@ section#view-messages ul {
 
 section#view-messages ul li {
     padding-block-end: 1.25em;
-    width: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-section#view-messages ul li.sended {
-    align-self: flex-end;
+section#view-messages ul li > * {
+    display: flex;
+    flex-direction: row;
+}
+
+section#view-messages ul li.sended > * {
+    justify-content: flex-end;
 }
 
 section#view-messages ul li small.message-status {
