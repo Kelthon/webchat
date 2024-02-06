@@ -7,55 +7,60 @@
     <title>Chat</title>
 </head>
 <body>
-    <aside>
-        <section id="contact-info">
-            <header>
-                <h1>John Doe</h1>
-                <small id="contact-current-status">online</small>
-            </header>
-        </section>
-    </aside>
-
     <main>
-        <section id="view-messages">
-            <ul>
+        <section>
+            <header id="contact-info">
+                <nav>
+                    <h1>John Doe</h1>
+                    <p><small id="contac/t-current-status">online</small></p>
+                </nav>
+                <button type="button">x</button>
+            </header>
+            <ul id="view-messages">
                 <li class="received">
-                    <p>Hello.</p>
-                    <aside>
-                        <small class="message-status">8:00 AM</small>
-                    </aside>
+                    <article>
+                        <p>Hello.</p>
+                        <footer>
+                            <small class="message-status">8:00 AM</small>
+                        </footer>
+                    </article>
                 </li>
                 
                 <li class="sended">
-                    <p>Hi 😊.</p>
-                    <aside>
-                        <small class="message-status">8:01 AM</small>
-                    </aside>
+                    <article>
+                        <p>Hi 😊.</p>
+                        <footer>
+                            <small class="message-status">8:01 AM</small>
+                        </footer>
+                    </article>
                 </li>
                 
                 <li class="received">
-                    <p>John Here.</p>
-                    <p>Can you send me the your annotations?.</p>
-                    <aside>
-                        <small class="message-status">8:01 AM</small>
-                    </aside>
+                    <article>
+                        <p>John Here.</p>
+                        <p>Can you send me the your annotations?.</p>
+                        <footer>
+                            <small class="message-status">8:01 AM</small>
+                        </footer>
+                    </article>
                 </li>
                 
                 <li class="sended">
-                    <p>Oh hi Hi John.</p>
-                    <p>Sure I do.</p>
-                    <aside>
-                        <small class="message-status">8:03 AM</small>
-                    </aside>
+                    <article>
+                        <p>Oh hi Hi John.</p>
+                        <p>Sure I do.</p>
+                        <footer>
+                            <small class="message-status">8:03 AM</small>
+                        </footer>
+                    </article>
                 </li>
             </ul>
-        </section>
-        
-        <section id="send-message">
-            <form action="" method="post">
-                <input type="text" name="message" placeholder="Write a message">
-                <button type="button">send</button>
-            </form>
+            <footer id="send-message">
+                <form action="" method="post">
+                    <input type="text" name="message" placeholder="Write a message">
+                    <button type="button">send</button>
+                </form>
+            </footer>
         </section>
     </main>
 </body>
