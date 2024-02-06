@@ -7,44 +7,63 @@
 
 aside section#contact-info {
     background-color: tomato;
+    display: flex;
+    padding-block-start: 1em;
+    padding-block-end: 0.5em;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid gray;
+}
+
+section:is(#contact-info, #view-messages) {
+    padding-inline: 1em;
 }
 
 section#view-messages {
+    padding-block-start: 0.5em;
     background-color: lightgreen;
+}
+
+section#view-messages ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+section#view-messages ul li {
+    padding-block-end: 1.25em;
+    width: auto;
+}
+
+section#view-messages ul li.sended {
+    align-self: flex-end;
+}
+
+section#view-messages ul li small.message-status {
+    color: gray;
+    text-transform: uppercase;
 }
 
 section#send-message {
     background-color: lightblue;
 }
 
-section#view-messages ul {
-    list-style: none;
+section#send-message form {
+    display: flex;
+    justify-content: space-between;
 }
 
-section:is(#contact-info, #view-messages) {
-    padding: 1em;
+section#send-message form > * {
+    border: 1px solid gray;
+    padding: 0.75em;
+    border-radius: 2em;
 }
 
-section#view-messages ul li {
-    padding-bottom: 1.25em;
+section#send-message form input {
+    flex-grow: 1;
 }
 
-section#view-messages ul li.received {
-    text-align: left;
-}
-
-section#view-messages ul li.sended {
-    text-align: right;
-}
-
-section#view-messages ul li small.message-status {
-    color: gray;
-}
-
-section#send-message form p {
-    margin: 0 1em;
-}
-
-section#send-message form p input, section#send-message form p button {
-    padding: 1em;
+section#send-message form button {
+    flex-grow: 0;
 }
