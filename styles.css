@@ -38,41 +38,41 @@ ul#view-messages li.sended{
     justify-content: flex-end;
 }
 
-ul#view-messages li article {
+ul#view-messages li div {
     display: flex;
     flex-direction: column;
     max-inline-size: 70%;
 }
 
-ul#view-messages li article p {
+ul#view-messages li div p {
     margin-block-end: 0.1em;
     padding: 0.5em;
 }
 
-ul#view-messages li article p {
+ul#view-messages li div p {
     border-radius: 1em;
 }
 
-ul#view-messages li.sended article p {
+ul#view-messages li.sended div p {
     background-color: blue;
 }
 
-ul#view-messages li.received article p {
+ul#view-messages li.received div p {
     background-color: red;
 }
 
-ul#view-messages li article footer {
+ul#view-messages li div footer {
     display: flex;
     flex-direction: row;
     padding-inline: 0.5em;
     justify-content: flex-start;
 }
 
-ul#view-messages li.sended article footer {
+ul#view-messages li.sended div footer {
     justify-content: flex-end;
 }
 
-ul#view-messages li article footer small.message-status {
+ul#view-messages li div footer small.message-status {
     color: gray;
     text-transform: uppercase;
 }
