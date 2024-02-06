@@ -5,7 +5,7 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-aside section#contact-info {
+header#contact-info {
     background-color: tomato;
     display: flex;
     padding-block-start: 1em;
@@ -15,61 +15,88 @@ aside section#contact-info {
     border-bottom: 2px solid gray;
 }
 
-section:is(#contact-info, #view-messages) {
+header#contact-info {
     padding-inline: 1em;
 }
 
-section#view-messages {
+ul#view-messages {
     padding-block-start: 0.5em;
     background-color: lightgreen;
-}
-
-section#view-messages ul {
     list-style: none;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
 
-section#view-messages ul li {
+ul#view-messages li {
     padding-block-end: 1.25em;
-    display: flex;
-    flex-direction: column;
-}
-
-section#view-messages ul li > * {
     display: flex;
     flex-direction: row;
 }
 
-section#view-messages ul li.sended > * {
+ul#view-messages li.sended{
     justify-content: flex-end;
 }
 
-section#view-messages ul li small.message-status {
+ul#view-messages li article {
+    display: flex;
+    flex-direction: column;
+    max-inline-size: 70%;
+}
+
+ul#view-messages li article p {
+    margin-block-end: 0.1em;
+    padding: 0.5em;
+}
+
+ul#view-messages li article p {
+    border-radius: 1em;
+}
+
+ul#view-messages li.sended article p {
+    background-color: blue;
+}
+
+ul#view-messages li.received article p {
+    background-color: red;
+}
+
+ul#view-messages li article footer {
+    display: flex;
+    flex-direction: row;
+    padding-inline: 0.5em;
+    justify-content: flex-start;
+}
+
+ul#view-messages li.sended article footer {
+    justify-content: flex-end;
+}
+
+ul#view-messages li article footer small.message-status {
     color: gray;
     text-transform: uppercase;
 }
 
-section#send-message {
+footer#send-message {
     background-color: lightblue;
+    border-top: 2px solid gray;
 }
 
-section#send-message form {
+footer#send-message form {
     display: flex;
     justify-content: space-between;
 }
 
-section#send-message form > * {
+footer#send-message form > * {
     border: 1px solid gray;
     padding: 0.75em;
     border-radius: 2em;
 }
 
-section#send-message form input {
+footer#send-message form input {
     flex-grow: 1;
 }
 
-section#send-message form button {
+footer#send-message form button {
     flex-grow: 0;
 }
