@@ -19,6 +19,7 @@
             </nav>
             <button type="button">x</button>
         </header>
+        
         <ul id="view-messages">
             <li class="received">
                 <div>
@@ -57,12 +58,9 @@
                     </footer>
                 </div>
             </li>
-                
+            
             <li class="sended">
                 <div>
-                    <p>photo</p>
-                    <p>photo</p>
-                    <p>photo</p>
                     <p>photo</p>
                     <p>photo</p>
                     <p>photo</p>
@@ -74,12 +72,15 @@
                 </div>
             </li>
         </ul>
+
         <footer id="send-message">
             <form method="post">
-                <input type="text" name="message" placeholder="Write a message">
-                <button type="button">send</button>
+                <input id="send-message-input" type="text" name="message" placeholder="Write a message" autocomplete="off">
+                <button id="send-message-button" type="button">send</button>
             </form>
         </footer>
     </main>
+
+    <script src="./index.js" lang="javascript"></script>
 </body>
 </html>
