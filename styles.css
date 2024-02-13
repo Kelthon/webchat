@@ -6,15 +6,13 @@
 }
 
 :root {
-    --primary-color: red;
-    --primary-light-color: tomato;
-    --secondary-color: #eeeeee;
-    --secondary-light-color: #cccccc;
-    --text-color: black;
-    --text-light-color: #6d6d6d;
+    --primary-color: #161616;
+    --secondary-color: #d3d3d3;
+    --tertiary-color: #474747;
+    --quaternary-color: #fefefe;
 
     background-color: var(--secondary-color);
-    color: var(--text-color);
+    color: var(--secondary-color);
 }
 
 :root, html, body, main {
@@ -41,7 +39,7 @@ header#contact-info {
 
 header#contact-info button {
     border: none;
-    color: var(--text-color);
+    color: var(--secondary-color);
     background-color: var(--primary-color);
 }
 
@@ -58,6 +56,7 @@ ul#view-messages li {
     padding-block-end: 1.25em;
     display: flex;
     flex-direction: row;
+    margin-inline: 0.2em;
 }
 
 ul#view-messages li.sended{
@@ -80,7 +79,7 @@ ul#view-messages li div p {
 }
 
 ul#view-messages li.sended div p {
-    background-color: var(--primary-light-color);
+    background-color: var(--tertiary-color);
 }
 
 ul#view-messages li.received div p {
@@ -99,7 +98,7 @@ ul#view-messages li.sended div footer {
 }
 
 ul#view-messages li div footer small.message-status {
-    color: var(--text-light-color);
+    color: var(--tertiary-color);
     text-transform: uppercase;
 }
 
@@ -110,6 +109,9 @@ footer#send-message {
 footer#send-message form {
     display: flex;
     justify-content: space-between;
+    gap: 0.2em;
+    margin-inline: 0.2em;
+    margin-block-end: 0.4em;
 }
 
 footer#send-message form > * {
@@ -119,8 +121,8 @@ footer#send-message form > * {
 }
 
 footer#send-message form input {
-    background-color: var(--secondary-light-color);
-    color: var(--text-color);
+    background-color: var(--quaternary-color);
+    color: var(--primary-color);
     flex: 1;
 }
 
@@ -129,15 +131,15 @@ footer#send-message form input:focus {
 }
 
 footer#send-message form input::placeholder {
-    color: var(--text-color);
+    color: var(--primary-color);
 }
 
 footer#send-message form button {
     background-color: var(--primary-color);
-    color: var(--text-color);
+    color: var(--secondary-color);
     flex: 0;
 }
 
 footer#send-message form button:hover {
-    background-color: var(--primary-light-color);
+    background-color: var(--tertiary-color);
 }
