@@ -63,6 +63,24 @@ ul#view-messages li.sended{
     justify-content: flex-end;
 }
 
+ul#view-messages li.info-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-block-end: 0;
+    margin-block-end: 1em;
+}
+
+ul#view-messages li.info-message p {
+    padding: 0.2em;
+    min-inline-size: 5em;
+    border-radius: 0.5em;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--quaternary-color);
+    text-transform: capitalize;
+}
+
 ul#view-messages li div {
     display: flex;
     flex-direction: column;

@@ -1,6 +1,7 @@
 const messageList = document.getElementById('view-messages');
 const inputMessage = document.getElementById("send-message-input");
 const inputSendButton = document.getElementById("send-message-button");
+const inputForm = document.getElementById("send-message-form");
 
 function getCurrentTime() {
     return (
@@ -33,3 +34,8 @@ function addMessage() {
 }
 
 inputSendButton.addEventListener("click", () => addMessage());
+
+inputForm.addEventListener("submit", event => {
+    event.preventDefault();
+    addMessage();
+});
