@@ -25,22 +25,49 @@ main {
     flex-direction: column;
 }
 
-header#contact-info {
+nav#contact-info {
     display: flex;
     position: sticky;
     padding-block-start: 1em;
     padding-block-end: 0.5em;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    border-bottom: 2px solid gray;
-    background-color: var(--primary-color);
     padding-inline: 1em;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--primary-color);
 }
 
-header#contact-info button {
+nav#contact-info button {
     border: none;
     color: var(--secondary-color);
     background-color: var(--primary-color);
+}
+
+nav#contact-info button.contact-photo {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 2em;
+    width: 48px;
+    height: 48px;
+}
+
+nav#contact-info button.contact-photo img {
+    width: 48px;
+    height: 48px;
+}
+
+nav#contact-info :is(button, section):hover {
+    background-color: var(--tertiary-color);
+}
+
+nav#contact-info header {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+nav#contact-info header section p.contact-status i.online {
+    color: green;
 }
 
 ul#view-messages {

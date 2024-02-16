@@ -10,6 +10,10 @@
       rel="stylesheet"
     />
     <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap"
       rel="stylesheet"
     />
@@ -18,13 +22,27 @@
   </head>
   <body>
     <main>
-      <header id="contact-info">
-        <nav>
-          <h1>John Doe</h1>
-          <p><small id="contact-current-status">online</small></p>
-        </nav>
-        <button type="button">x</button>
-      </header>
+      <nav id="contact-info">
+        <header>
+          <button class="contact-back-button" type="button">
+            <i class="ri-arrow-left-fill ri-2x"></i>
+          </button>
+          <button class="contact-photo" type="button">
+            <!-- <img src="/public/user-photo.png" alt="The contact profile photo"> -->
+            <i class="ri-user-fill ri-2x"></i>
+          </button>
+          <section>
+            <h1>John Doe</h1>
+            <p class="contact-status">
+              <i class="ri-circle-fill ri-xxs online"></i>
+              <small id="contact-current-status">online</small>
+            </p>
+          </section>
+        </header>
+        <footer>
+          <button type="button"><i class="ri-more-2-fill ri-2x"></i></button>
+        </footer>
+      </nav>
 
       <ul id="view-messages">
         <li class="received">
