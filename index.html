@@ -1,90 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lusitana&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <title>Chat</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <header id="contact-info">
-            <nav>
-                <h1>John Doe</h1>
-                <p><small id="contact-current-status">online</small></p>
-            </nav>
-            <button type="button">x</button>
-        </header>
-        
-        <ul id="view-messages">
-            <li class="received">
-                <div>
-                    <p>Hello.</p>
-                    <footer>
-                        <small class="message-status">8:00 AM</small>
-                    </footer>
-                </div>
-            </li>
-            
-            <li class="sended">
-                <div>
-                    <p>Hi 😊.</p>
-                    <footer>
-                        <small class="message-status">8:01 AM</small>
-                    </footer>
-                </div>
-            </li>
+      <header id="contact-info">
+        <nav>
+          <h1>John Doe</h1>
+          <p><small id="contact-current-status">online</small></p>
+        </nav>
+        <button type="button">x</button>
+      </header>
 
-            <li class="info-message">
-                <p><small>today</small></p>
-            </li>
-            
-            <li class="received">
-                <div>
-                    <p>John Here.</p>
-                    <p>Can you send me the your annotations?.</p>
-                    <footer>
-                        <small class="message-status">8:01 AM</small>
-                    </footer>
-                </div>
-            </li>
-            
-            <li class="sended">
-                <div>
-                    <p>Oh hi Hi John.</p>
-                    <p>Sure I do.</p>
-                    <footer>
-                        <small class="message-status">8:03 AM</small>
-                    </footer>
-                </div>
-            </li>
-            
-            <li class="sended">
-                <div>
-                    <p>photo</p>
-                    <p>photo</p>
-                    <p>photo</p>
-                    <p>photo</p>
-                    <p>photo</p>
-                    <footer>
-                        <small class="message-status">8:07 AM</small>
-                    </footer>
-                </div>
-            </li>
-        </ul>
+      <ul id="view-messages">
+        <li class="received">
+          <div>
+            <p>Hello.</p>
+            <footer>
+              <small class="message-status">8:00 AM</small>
+            </footer>
+          </div>
+        </li>
 
-        <footer id="send-message">
-            <form id="send-message-form" method="post">
-                <input id="send-message-input" type="text" name="message" placeholder="Write a message" autocomplete="off">
-                <button id="send-message-button" type="button">send</button>
-            </form>
-        </footer>
+        <li class="sended">
+          <div>
+            <p>Hi 😊.</p>
+            <footer>
+              <small class="message-status">8:01 AM</small>
+            </footer>
+          </div>
+        </li>
+
+        <li class="info-message">
+          <p><small>today</small></p>
+        </li>
+
+        <li class="received">
+          <div>
+            <p>John Here.</p>
+            <p>Can you send me the your annotations?.</p>
+            <footer>
+              <small class="message-status">8:01 AM</small>
+            </footer>
+          </div>
+        </li>
+
+        <li class="sended">
+          <div>
+            <p>Oh hi Hi John.</p>
+            <p>Sure I do.</p>
+            <footer>
+              <small class="message-status">8:03 AM</small>
+            </footer>
+          </div>
+        </li>
+
+        <li class="sended">
+          <div>
+            <p>photo</p>
+            <p>photo</p>
+            <p>photo</p>
+            <p>photo</p>
+            <p>photo</p>
+            <footer>
+              <small class="message-status">8:07 AM</small>
+            </footer>
+          </div>
+        </li>
+      </ul>
+
+      <footer id="send-message">
+        <form id="send-message-form" method="post">
+          <input
+            id="send-message-input"
+            type="text"
+            name="message"
+            placeholder="Write a message"
+            autocomplete="off"
+          />
+          <button id="send-message-button" type="button">send</button>
+        </form>
+      </footer>
     </main>
 
     <script src="./index.js"></script>
-</body>
+  </body>
 </html>
