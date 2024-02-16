@@ -24,28 +24,28 @@
     <main>
       <nav id="contact-info">
         <header>
-          <button class="contact-back-button" type="button">
+          <button id="contact-back-button" type="button">
             <i class="ri-arrow-left-fill ri-2x"></i>
           </button>
-          <button class="contact-photo" type="button">
+          <button id="contact-photo" type="button">
             <!-- <img src="/public/user-photo.png" alt="The contact profile photo"> -->
             <i class="ri-user-fill ri-2x"></i>
           </button>
           <section>
             <h1>John Doe</h1>
-            <p class="contact-status">
+            <p id="contact-status">
               <i class="ri-circle-fill ri-xxs online"></i>
               <small id="contact-current-status">online</small>
             </p>
           </section>
         </header>
         <footer>
-          <button type="button"><i class="ri-more-2-fill ri-2x"></i></button>
+          <button id="contact-more-options" type="button"><i class="ri-more-2-fill ri-2x"></i></button>
         </footer>
       </nav>
 
       <ul id="view-messages">
-        <li class="received">
+        <li class="text-message received">
           <div>
             <p>Hello.</p>
             <footer>
@@ -54,7 +54,7 @@
           </div>
         </li>
 
-        <li class="sended">
+        <li class="text-message sended">
           <div>
             <p>Hi 😊.</p>
             <footer>
@@ -67,7 +67,7 @@
           <p><small>today</small></p>
         </li>
 
-        <li class="received">
+        <li class="text-message received">
           <div>
             <p>John Here.</p>
             <p>Can you send me the your annotations?.</p>
@@ -77,7 +77,7 @@
           </div>
         </li>
 
-        <li class="sended">
+        <li class="text-message sended">
           <div>
             <p>Oh hi Hi John.</p>
             <p>Sure I do.</p>
@@ -87,13 +87,30 @@
           </div>
         </li>
 
-        <li class="sended">
+        <li class="view-once-photo sended">
           <div>
-            <p>photo</p>
-            <p>photo</p>
-            <p>photo</p>
-            <p>photo</p>
-            <p>photo</p>
+            <p>
+              <i class="ri-reply-fill ri-xl"></i>
+              <button type="button">
+                <i class="ri-camera-fill"></i>
+                <span>photo</span>
+              </button>
+            </p>
+            <footer>
+              <small class="message-status">8:07 AM</small>
+            </footer>
+          </div>
+        </li>
+
+        <li class="view-once-photo received">
+          <div>
+            <p>
+              <i class="ri-reply-fill ri-xl"></i>
+              <button type="button">
+                <i class="ri-camera-fill"></i>
+                <span>photo</span>
+              </button>
+            </p>
             <footer>
               <small class="message-status">8:07 AM</small>
             </footer>
@@ -103,14 +120,22 @@
 
       <footer id="send-message">
         <form id="send-message-form" method="post">
-          <input
-            id="send-message-input"
-            type="text"
-            name="message"
-            placeholder="Write a message"
-            autocomplete="off"
-          />
-          <button id="send-message-button" type="button">send</button>
+          <p>
+            <input
+              id="send-message-input"
+              type="text"
+              name="message"
+              class="text-message"
+              placeholder="Write a message"
+              autocomplete="off"
+            />
+            <button id="attachment-button" type="button"><i class="ri-attachment-2 ri-2x"></i></button>
+            <button id="emoji-button" type="button"><i class="ri-emotion-fill ri-2x"></i></button>
+            <button id="photo-button" type="button"><i class="ri-camera-fill ri-2x"></i></button>
+          </p>
+          <button id="send-message-button" type="button">
+            <i class="ri-send-plane-fill ri-xl"></i>
+          </button>
         </form>
       </footer>
     </main>

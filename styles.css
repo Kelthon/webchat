@@ -43,7 +43,7 @@ nav#contact-info button {
     background-color: var(--primary-color);
 }
 
-nav#contact-info button.contact-photo {
+nav#contact-info > header > button.contact-photo {
     background-color: var(--secondary-color);
     color: var(--primary-color);
     border-radius: 2em;
@@ -51,22 +51,22 @@ nav#contact-info button.contact-photo {
     height: 48px;
 }
 
-nav#contact-info button.contact-photo img {
+nav#contact-info > button.contact-photo > img {
     width: 48px;
     height: 48px;
 }
 
-nav#contact-info :is(button, section):hover {
+nav#contact-info:is(button, section):hover {
     background-color: var(--tertiary-color);
 }
 
-nav#contact-info header {
+nav#contact-info > header {
     display: flex;
     flex-direction: row;
     gap: 0.5em;
 }
 
-nav#contact-info header section p.contact-status i.online {
+nav#contact-info > header > section > p#contact-status > i.online {
     color: green;
 }
 
@@ -79,18 +79,18 @@ ul#view-messages {
     overflow-y: auto;
 }
 
-ul#view-messages li {
-    padding-block-end: 1.25em;
+ul#view-messages > li {
+    margin-block-end: 1.25em;
     display: flex;
     flex-direction: row;
     margin-inline: 0.2em;
 }
 
-ul#view-messages li.sended{
+ul#view-messages > li.sended, ul#view-messages li.sended > div > footer {
     justify-content: flex-end;
 }
 
-ul#view-messages li.info-message {
+ul#view-messages > li.info-message {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -98,7 +98,7 @@ ul#view-messages li.info-message {
     margin-block-end: 1em;
 }
 
-ul#view-messages li.info-message p {
+ul#view-messages > li.info-message > p {
     padding: 0.2em;
     min-inline-size: 5em;
     border-radius: 0.5em;
@@ -108,41 +108,56 @@ ul#view-messages li.info-message p {
     text-transform: capitalize;
 }
 
-ul#view-messages li div {
+ul#view-messages > li > div {
     display: flex;
     flex-direction: column;
     max-inline-size: 70%;
 }
 
-ul#view-messages li div p {
+ul#view-messages > li.text-message > div > p {
     margin-block-end: 0.1em;
+    border-radius: 1em;
     padding: 0.5em;
 }
 
-ul#view-messages li div p {
+ul#view-messages > li.view-once-photo > div > p {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+}
+
+ul#view-messages > li.view-once-photo > div > p > button {
+    border: none;
+    font-size: 1em;
+    color: var(--secondary-color);
+    padding: 0.5em;
     border-radius: 1em;
 }
 
-ul#view-messages li.sended div p {
+ul#view-messages > li.view-once-photo > div > p > i {
+    color: var(--primary-color);
+}
+
+ul#view-messages > li.view-once-photo.received > div > p > i {
+    order: 3;
+}
+
+ul#view-messages > li.text-message.sended  > div > p, ul#view-messages > li.view-once-photo.sended > div > p > button {
     background-color: var(--tertiary-color);
 }
 
-ul#view-messages li.received div p {
+ul#view-messages > li.text-message.received > div > p, ul#view-messages > li.view-once-photo.received > div > p > button {
     background-color: var(--primary-color);
 }
 
-ul#view-messages li div footer {
+ul#view-messages > li > div > footer {
     display: flex;
     flex-direction: row;
     padding-inline: 0.5em;
     justify-content: flex-start;
 }
 
-ul#view-messages li.sended div footer {
-    justify-content: flex-end;
-}
-
-ul#view-messages li div footer small.message-status {
+ul#view-messages > li > div > footer > small.message-status {
     color: var(--tertiary-color);
     text-transform: uppercase;
 }
@@ -151,7 +166,7 @@ footer#send-message {
     position: sticky;
 }
 
-footer#send-message form {
+footer#send-message > form {
     display: flex;
     justify-content: space-between;
     gap: 0.2em;
@@ -159,32 +174,45 @@ footer#send-message form {
     margin-block-end: 0.4em;
 }
 
-footer#send-message form > * {
+footer#send-message > form > * {
     border: none;
-    padding: 0.75em;
+    padding-inline: 1em;
+    padding-block: 0.5em;
     border-radius: 2em;
 }
 
-footer#send-message form input {
+footer#send-message > form > p {
     background-color: var(--quaternary-color);
     color: var(--primary-color);
+    display: flex;
     flex: 1;
+    gap: 1em;
 }
 
-footer#send-message form input:focus {
+footer#send-message > form > p > input#send-message-input {
+    flex: 1;
+    border: none;
+}
+
+footer#send-message > form > p > input#send-message-input:focus {
     outline: none;
 }
 
-footer#send-message form input::placeholder {
+footer#send-message > form > input#send-message-input::placeholder {
     color: var(--primary-color);
 }
 
-footer#send-message form button {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    flex: 0;
+footer#send-message > form > p > button {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: none;
 }
 
-footer#send-message form button:hover {
+footer#send-message > form > button {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+footer#send-message > form > button:hover {
     background-color: var(--tertiary-color);
 }
