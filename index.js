@@ -16,8 +16,12 @@ function getCurrentTime() {
 
 function addMessage() {
   if (inputMessage.value) {
-    messageList.innerHTML = `${messageList.innerHTML}
-        <li class="sended">
+    let messages = messageList.children;
+    let lastMessage = messages[messages.length - 1];
+
+    if (lastMessage.classList.contains("received")) {
+      messageList.innerHTML = `${messageList.innerHTML}
+        <li class="text-message sended">
             <div>
                 <p>${inputMessage.value}</p>
                 <footer>
@@ -25,6 +29,14 @@ function addMessage() {
                 </footer>
             </div>
         </li>`;
+    } else {
+      let msg = lastMessage.querySelector("div").innerHTML.split("<footer>")[0];
+      let footer = lastMessage.querySelector("div > footer").outerHTML;
+
+      lastMessage.querySelector(
+        "div"
+      ).innerHTML = `${msg}<p>${inputMessage.value}</p>${footer}`;
+    }
 
     inputMessage.value = "";
   }
