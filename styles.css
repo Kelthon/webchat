@@ -35,28 +35,18 @@ nav#contact-info {
     align-items: center;
     justify-content: space-between;
     background-color: var(--primary-color);
+    border-block-end: 1px solid var(--quaternary-color);
 }
 
 nav#contact-info button {
     border: none;
     color: var(--secondary-color);
     background-color: var(--primary-color);
-}
-
-nav#contact-info > header > button.contact-photo {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    padding: 0.5em;
     border-radius: 2em;
-    width: 48px;
-    height: 48px;
 }
 
-nav#contact-info > button.contact-photo > img {
-    width: 48px;
-    height: 48px;
-}
-
-nav#contact-info:is(button, section):hover {
+nav#contact-info button:hover {
     background-color: var(--tertiary-color);
 }
 
@@ -77,6 +67,8 @@ ul#view-messages {
     flex-direction: column;
     flex: 1;
     overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
 }
 
 ul#view-messages > li {
@@ -135,7 +127,13 @@ ul#view-messages > li.view-once-photo > div > p > button {
 }
 
 ul#view-messages > li.view-once-photo > div > p > i {
+    padding: 0.25em;
+    border-radius: 2em;
     color: var(--primary-color);
+}
+
+ul#view-messages>li.view-once-photo>div>p>i:hover {
+    background-color: var(--quaternary-color);
 }
 
 ul#view-messages > li.view-once-photo.received > div > p > i {
@@ -164,6 +162,7 @@ ul#view-messages > li > div > footer > small.message-status {
 
 footer#send-message {
     position: sticky;
+    padding-block-start: 0.25em;
 }
 
 footer#send-message > form {
@@ -206,6 +205,10 @@ footer#send-message > form > p > button {
     background-color: transparent;
     color: var(--primary-color);
     border: none;
+}
+
+footer#send-message > form > p > button:hover {
+    color: var(--tertiary-color);
 }
 
 footer#send-message > form > button {
