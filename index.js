@@ -19,23 +19,23 @@ function addMessage() {
     let messages = messageList.children;
     let lastMessage = messages[messages.length - 1];
 
-    if (lastMessage.classList.contains("received")) {
-      messageList.innerHTML = `${messageList.innerHTML}
-        <li class="text-message sended">
-            <div>
-                <p>${inputMessage.value}</p>
-                <footer>
-                    <small class="message-status">${getCurrentTime()}</small>
-                </footer>
-            </div>
-        </li>`;
+    if (lastMessage.classList.contains("sended")) {
+        let msg = lastMessage.querySelector("div").innerHTML.split("<footer>")[0];
+        let footer = lastMessage.querySelector("div > footer").outerHTML;
+  
+        lastMessage.querySelector(
+          "div"
+        ).innerHTML = `${msg}<p>${inputMessage.value}</p>${footer}`;
     } else {
-      let msg = lastMessage.querySelector("div").innerHTML.split("<footer>")[0];
-      let footer = lastMessage.querySelector("div > footer").outerHTML;
-
-      lastMessage.querySelector(
-        "div"
-      ).innerHTML = `${msg}<p>${inputMessage.value}</p>${footer}`;
+        messageList.innerHTML = `${messageList.innerHTML}
+          <li class="text-message sended">
+              <div>
+                  <p>${inputMessage.value}</p>
+                  <footer>
+                      <small class="message-status">${getCurrentTime()}</small>
+                  </footer>
+              </div>
+          </li>`;
     }
 
     inputMessage.value = "";
@@ -47,4 +47,5 @@ inputSendButton.addEventListener("click", () => addMessage());
 inputForm.addEventListener("submit", (event) => {
   event.preventDefault();
   addMessage();
+  messageList.scrollTop = messageList.scrollHeight;
 });
