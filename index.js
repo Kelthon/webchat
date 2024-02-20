@@ -183,7 +183,7 @@ function concatMessagesContent(type, contentsList) {
     return concatenatedContent;
   }
 
-  return `<p>${fixContent(message)}</p>`;
+  return getParagraph(fixContent(message));
 }
 
 function groupMessages(messageList, groupFunction) {
