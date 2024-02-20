@@ -46,10 +46,35 @@ const preloadedMessages = [
     isSender: true,
   },
   {
-    type: "view-once-photo",
-    content: null,
+    type: "text-message",
+    content: "Thx Bro.",
     sendDate: "02/19/2024 15:46:12",
     isSender: false,
+  },
+
+  {
+    type: "text-message",
+    content: "1",
+    sendDate: "02/19/2024 15:46:12",
+    isSender: true,
+  },
+  {
+    type: "text-message",
+    content: "2",
+    sendDate: "02/19/2024 15:46:12",
+    isSender: true,
+  },
+  {
+    type: "text-message",
+    content: "3",
+    sendDate: "02/19/2024 15:46:12",
+    isSender: true,
+  },
+  {
+    type: "text-message",
+    content: "4",
+    sendDate: "02/19/2024 15:46:12",
+    isSender: true,
   },
 ];
 
@@ -70,6 +95,10 @@ function getDateMark(date) {
   return `<li class="info-message">
   <p><small>${date}</small></p>
 </li>`;
+}
+
+function getParagraph(content) {
+  return `<p>${content}</p>`;
 }
 
 function getViewOnceButton() {
@@ -110,26 +139,26 @@ function getViewOncePhoto(content, isSender, sendDate) {
 
 function addMessage() {
   if (inputMessage.value) {
-    let messages = messageList.children;
-    let lastMessage = messages[messages.length - 1];
+    let allMessages = messageList.children;
+    let lastMessage = allMessages[allMessages.length - 1];
 
     if (lastMessage.classList.contains("sended")) {
-      let msg = lastMessage.querySelector("div").innerHTML.split("<footer>")[0];
+      let content = "";
       let footer = lastMessage.querySelector("div > footer").outerHTML;
 
-      lastMessage.querySelector(
-        "div"
-      ).innerHTML = `${msg}<p>${inputMessage.value}</p>${footer}`;
+      for (let pElement of lastMessage.querySelectorAll("div > p").values()) {
+        content = `${content}
+        ${pElement.outerHTML}`;
+      }
+
+      content = `${content}${getParagraph(inputMessage.value)}`;
+      lastMessage.querySelector("div").innerHTML = `${content}${footer}`;
     } else {
-      messageList.innerHTML = `${messageList.innerHTML}
-        <li class="text-message sended">
-          <div>
-            <p>${inputMessage.value}</p>
-            <footer>
-              <small class="message-status">${getCurrentTime()}</small>
-            </footer>
-          </div>
-        </li>`;
+      messageList.innerHTML = `${messageList.innerHTML}${getTextMessage(
+        getParagraph(inputMessage.value),
+        true,
+        new Date()
+      )}`;
     }
 
     inputMessage.value = "";
@@ -137,7 +166,7 @@ function addMessage() {
 }
 
 function concatMessagesContent(type, contentsList) {
-  let fixContent = (content) => `<p>${content}</p>`;
+  let fixContent = (content) => getParagraph(content);
 
   if (type === "view-once-photo") {
     fixContent = (content) => getViewOnceButton();
@@ -200,8 +229,6 @@ function loadMessages() {
         return message.content;
       })
     );
-
-    console.log(content);
 
     let isSender = group.messages[0].isSender;
     let sendDate = group.messages[group.messages.length - 1].sendDate;
