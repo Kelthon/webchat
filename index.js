@@ -4,77 +4,60 @@ const inputSendButton = document.getElementById("send-message-button");
 const inputForm = document.getElementById("send-message-form");
 const preloadedMessages = [
   {
+    id: 0,
     type: "text-message",
     content: "Hello.",
     sendDate: "02/18/2024 08:00:42",
     isSender: false,
   },
   {
+    id: 1,
     type: "text-message",
     content: "Hi 😊.",
     sendDate: "02/18/2024 08:01:57",
     isSender: true,
   },
   {
+    id: 2,
     type: "text-message",
     content: "John Here.",
     sendDate: "02/19/2024 15:25:42",
     isSender: false,
   },
   {
+    id: 3,
     type: "text-message",
     content: "Can you send me the your annotations?",
     sendDate: "02/19/2024 15:27:57",
     isSender: false,
   },
   {
+    id: 4,
     type: "text-message",
     content: "Oh hi Hi John.",
     sendDate: "02/19/2024 15:34:02",
     isSender: true,
   },
   {
+    id: 5,
     type: "text-message",
     content: "Sure I do.",
     sendDate: "02/19/2024 15:34:11",
     isSender: true,
   },
   {
+    id: 6,
     type: "view-once-photo",
     content: null,
     sendDate: "02/19/2024 15:39:26",
     isSender: true,
   },
   {
+    id: 7,
     type: "text-message",
     content: "Thx Bro.",
     sendDate: "02/19/2024 15:46:12",
     isSender: false,
-  },
-
-  {
-    type: "text-message",
-    content: "1",
-    sendDate: "02/19/2024 15:46:12",
-    isSender: true,
-  },
-  {
-    type: "text-message",
-    content: "2",
-    sendDate: "02/19/2024 15:46:12",
-    isSender: true,
-  },
-  {
-    type: "text-message",
-    content: "3",
-    sendDate: "02/19/2024 15:46:12",
-    isSender: true,
-  },
-  {
-    type: "text-message",
-    content: "4",
-    sendDate: "02/19/2024 15:46:12",
-    isSender: true,
   },
 ];
 
@@ -97,12 +80,12 @@ function getDateMark(date) {
 </li>`;
 }
 
-function getParagraph(content) {
-  return `<p>${content}</p>`;
+function getParagraph(content, attributes) {
+  return `<p ${!!attributes ? attributes : ""}>${content}</p>`;
 }
 
-function getViewOnceButton() {
-  return `<p>
+function getViewOnceButton(paragraphAttributes) {
+  return `<p ${!!paragraphAttributes ? paragraphAttributes : ""}>
       <i class="ri-reply-fill ri-xl"></i>
       <button type="button">
         <i class="ri-camera-fill"></i>
@@ -137,34 +120,6 @@ function getViewOncePhoto(content, isSender, sendDate) {
       </li>`;
 }
 
-function addMessage() {
-  if (inputMessage.value) {
-    let allMessages = messageList.children;
-    let lastMessage = allMessages[allMessages.length - 1];
-
-    if (lastMessage.classList.contains("sended")) {
-      let content = "";
-      let footer = lastMessage.querySelector("div > footer").outerHTML;
-
-      for (let pElement of lastMessage.querySelectorAll("div > p").values()) {
-        content = `${content}
-        ${pElement.outerHTML}`;
-      }
-
-      content = `${content}${getParagraph(inputMessage.value)}`;
-      lastMessage.querySelector("div").innerHTML = `${content}${footer}`;
-    } else {
-      messageList.innerHTML = `${messageList.innerHTML}${getTextMessage(
-        getParagraph(inputMessage.value),
-        true,
-        new Date()
-      )}`;
-    }
-
-    inputMessage.value = "";
-  }
-}
-
 function concatMessagesContent(type, contentsList) {
   let fixContent = (content) => getParagraph(content);
 
@@ -189,37 +144,54 @@ function concatMessagesContent(type, contentsList) {
 function groupMessages(messageList, groupFunction) {
   let groups = [];
   let array = [];
-  let lastType = "";
-  let lastSender = false;
+  let lastMessage = {
+    id: null,
+    type: "",
+    content: null,
+    isSender: false,
+    sendDate: null,
+  };
 
   for (message of messageList) {
-    if (lastType === "") {
-      lastType = message.type;
-      lastSender = message.isSender;
+    if (lastMessage.type === "") {
+      lastMessage.type = message.type;
+      lastMessage.isSender = message.isSender;
+      lastMessage.id = message.id;
     }
 
-    if (message.type === lastType && message.isSender === lastSender) {
+    if (groupFunction(message, lastMessage)) {
       array.push(message);
-      lastSender = message.isSender;
+      lastMessage.isSender = message.isSender;
+      lastMessage.id = message.id;
     } else {
       if (array.length > 0) {
-        groups.push({ type: lastType, messages: array });
+        groups.push({ type: lastMessage.type, messages: array });
         array = [];
       }
 
       array.push(message);
-      lastType = message.type;
-      lastSender = message.isSender;
+      lastMessage.type = message.type;
+      lastMessage.isSender = message.isSender;
+      lastMessage.id = message.id;
     }
   }
 
-  groups.push({ type: lastType, messages: array });
+  groups.push({ type: lastMessage.type, messages: array });
 
   return groups;
 }
 
 function loadMessages() {
-  let messageGroups = groupMessages(preloadedMessages);
+  let messageGroups = groupMessages(
+    preloadedMessages,
+    (message, lastMessage) => {
+      return (
+        message.type === lastMessage.type &&
+        message.isSender === lastMessage.isSender
+      );
+    }
+  );
+
   let loadedMessages = "";
 
   for (group of messageGroups) {
@@ -230,8 +202,8 @@ function loadMessages() {
       })
     );
 
-    let isSender = group.messages[0].isSender;
-    let sendDate = group.messages[group.messages.length - 1].sendDate;
+    let isSender = group.messages.find(() => true).isSender;
+    let sendDate = group.messages.findLast(() => true).sendDate;
 
     if (group.type === "text-message") {
       loadedMessages = `${loadedMessages}${getTextMessage(
@@ -249,6 +221,43 @@ function loadMessages() {
   }
 
   messageList.innerHTML = loadedMessages;
+}
+
+function getNewId() {
+  return (
+    preloadedMessages
+      .map((message) => {
+        return message.id;
+      })
+      .reduce((maxId, currentId) => {
+        if (maxId < currentId) return currentId;
+        return maxId;
+      }) + 1
+  );
+}
+
+function addMessage(id) {
+  if (inputMessage.value) {
+    preloadedMessages.push({
+      id: id,
+      type: "text-message",
+      content: inputMessage.value,
+      sendDate: new Date(),
+      isSender: true,
+    });
+
+    inputMessage.value = "";
+    inputMessage.focus();
+    loadMessages();
+  }
+}
+
+function removeMessage(id) {
+  preloadedMessages = preloadedMessages.filter((message) => {
+    if (message.id !== id) return message;
+  });
+
+  loadMessages();
 }
 
 window.addEventListener("load", () => loadMessages());
