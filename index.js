@@ -80,6 +80,33 @@ function getDateMark(date) {
 </li>`;
 }
 
+function getElapsedTime(date) {
+  const isDateInTimeRange = (dayStart, dayEnd) => {
+    const oneDayInMilliseconds = 86400000;
+    let elapsedTime = new Date().getTime() - date.getTime();
+
+    return (
+      elapsedTime > oneDayInMilliseconds * dayStart &&
+      elapsedTime < oneDayInMilliseconds * dayEnd
+    );
+  };
+
+  if (isDateInTimeRange(0, 1)) {
+    return "today";
+  } else if (isDateInTimeRange(1, 2)) {
+    return "yesterday";
+  } else if (isDateInTimeRange(2, 6)) {
+    return date.toLocaleDateString("en-US", { weekday: "long" });
+  } else {
+    return date.toLocaleDateString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    });
+  }
+}
+
 function getParagraph(content, attributes) {
   return `<p ${!!attributes ? attributes : ""}>${content}</p>`;
 }
@@ -120,64 +147,62 @@ function getViewOncePhoto(content, isSender, sendDate) {
       </li>`;
 }
 
-function concatMessagesContent(type, contentsList) {
-  let fixContent = (content) => getParagraph(content);
+function getContentParagraph(message) {
+  let id = `id="${message.id}"`;
 
-  if (type === "view-once-photo") {
-    fixContent = (content) => getViewOnceButton();
+  if (message.type === "view-once-photo") {
+    return getViewOnceButton(id);
+  } else {
+    return getParagraph(message.content, id);
   }
+}
 
-  if (Array.isArray(contentsList)) {
+function concatMessagesContent(messagesList) {
+  if (Array.isArray(messagesList)) {
     let concatenatedContent = "";
 
-    for (content of contentsList) {
+    for (message of messagesList) {
       concatenatedContent = `${concatenatedContent}
-    ${fixContent(content)}`;
+    ${getContentParagraph(message)}`;
     }
 
     return concatenatedContent;
   }
 
-  return getParagraph(fixContent(message));
+  return getParagraph(getContentParagraph(messagesList));
 }
 
 function groupMessages(messageList, groupFunction) {
   let groups = [];
   let array = [];
-  let lastMessage = {
-    id: null,
-    type: "",
-    content: null,
-    isSender: false,
-    sendDate: null,
+  let previousMessage = null;
+
+  const copyMessage = (message) => {
+    return {
+      id: message.id,
+      type: message.type,
+      content: message.content,
+      isSender: message.isSender,
+      sendDate: message.sendDate,
+    };
   };
 
   for (message of messageList) {
-    if (lastMessage.type === "") {
-      lastMessage.type = message.type;
-      lastMessage.isSender = message.isSender;
-      lastMessage.id = message.id;
-    }
-
-    if (groupFunction(message, lastMessage)) {
+    if (!!previousMessage && groupFunction(message, previousMessage)) {
+      previousMessage = copyMessage(message);
       array.push(message);
-      lastMessage.isSender = message.isSender;
-      lastMessage.id = message.id;
     } else {
       if (array.length > 0) {
-        groups.push({ type: lastMessage.type, messages: array });
+        groups.push(array);
         array = [];
       }
 
+      previousMessage = copyMessage(message);
       array.push(message);
-      lastMessage.type = message.type;
-      lastMessage.isSender = message.isSender;
-      lastMessage.id = message.id;
     }
   }
 
-  groups.push({ type: lastMessage.type, messages: array });
-
+  if (!!previousMessage && array.length > 0) groups.push(array);
   return groups;
 }
 
@@ -195,27 +220,20 @@ function loadMessages() {
   let loadedMessages = "";
 
   for (group of messageGroups) {
-    let content = concatMessagesContent(
-      group.type,
-      group.messages.map((message) => {
-        return message.content;
-      })
-    );
+    let content = concatMessagesContent(group);
+    let lastMessage = group.findLast(() => true);
 
-    let isSender = group.messages.find(() => true).isSender;
-    let sendDate = group.messages.findLast(() => true).sendDate;
-
-    if (group.type === "text-message") {
+    if (lastMessage.type === "text-message") {
       loadedMessages = `${loadedMessages}${getTextMessage(
         content,
-        isSender,
-        sendDate
+        lastMessage.isSender,
+        lastMessage.sendDate
       )}`;
     } else {
       loadedMessages = `${loadedMessages}${getViewOncePhoto(
         content,
-        isSender,
-        sendDate
+        lastMessage.isSender,
+        lastMessage.sendDate
       )}`;
     }
   }
@@ -253,11 +271,11 @@ function addMessage(id) {
 }
 
 function removeMessage(id) {
-  preloadedMessages = preloadedMessages.filter((message) => {
-    if (message.id !== id) return message;
-  });
-
-  loadMessages();
+  if (preloadedMessages.length > 0) {
+    const messageIndex = preloadedMessages.findIndex(message => message.id === id);
+    console.log(preloadedMessages.splice(messageIndex, 1));
+    loadMessages();
+  }
 }
 
 window.addEventListener("load", () => loadMessages());
